@@ -1,1 +1,664 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>develop a website for the computer hardware</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:system-ui,-apple-system,sans-serif;background:#0a0e1a;color:#e8ecf6}.c{text-align:center;padding:24px}h1{font-size:34px;margin:0 0 8px;letter-spacing:-.5px}p{color:#8b93a7;margin:4px 0}.t{margin-top:20px;font-size:12px;color:#5b6478}</style></head><body><div class="c"><h1>develop a website for the computer hardware</h1><p>Edit index.html and push — it deploys automatically.</p><p class="t">Staged with Janus.</p></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoltCore — Premium Computer Hardware</title>
+<style>
+  :root{
+    --bg:#0b0f17;
+    --bg-2:#111827;
+    --surface:#151c2b;
+    --surface-2:#1b2436;
+    --line:#26314a;
+    --text:#e8edf7;
+    --muted:#9aa8c2;
+    --accent:#3ddc97;
+    --accent-2:#4f8cff;
+    --accent-glow:rgba(61,220,151,.35);
+    --radius:16px;
+    --max:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(11,15,23,.78);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    height:72px;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-weight:800;font-size:1.2rem;letter-spacing:.5px;
+  }
+  .logo-mark{
+    width:34px;height:34px;border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:grid;place-items:center;
+    box-shadow:0 0 22px var(--accent-glow);
+    font-size:1rem;color:#06121a;font-weight:900;
+  }
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{
+    font-size:.94rem;color:var(--muted);font-weight:500;
+    transition:color .2s;position:relative;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;
+    background:var(--accent);transition:width .25s;
+  }
+  .nav-links a:hover{color:var(--text)}
+  .nav-links a:hover::after{width:100%}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:12px 24px;border-radius:999px;font-weight:600;font-size:.94rem;
+    border:1px solid transparent;cursor:pointer;transition:.25s;white-space:nowrap;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--accent),#2bb87c);
+    color:#04140d;box-shadow:0 8px 26px -8px var(--accent-glow);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 34px -8px var(--accent-glow)}
+  .btn-ghost{
+    background:transparent;border-color:var(--line);color:var(--text);
+  }
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .nav .btn{padding:10px 20px}
+  .menu-toggle{
+    display:none;background:none;border:1px solid var(--line);
+    color:var(--text);border-radius:10px;padding:8px 12px;font-size:1.1rem;cursor:pointer;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    padding:96px 0 110px;
+    background:
+      radial-gradient(900px 480px at 78% -10%,rgba(79,140,255,.20),transparent 60%),
+      radial-gradient(700px 420px at 8% 20%,rgba(61,220,151,.16),transparent 60%);
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:64px 64px;
+    opacity:.16;
+    mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 72%);
+    -webkit-mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 72%);
+  }
+  .hero-grid{
+    position:relative;display:grid;grid-template-columns:1.05fr .95fr;
+    gap:56px;align-items:center;
+  }
+  .pill{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:7px 15px;border-radius:999px;font-size:.8rem;font-weight:600;
+    letter-spacing:.4px;text-transform:uppercase;
+    background:rgba(61,220,151,.10);border:1px solid rgba(61,220,151,.35);
+    color:var(--accent);margin-bottom:22px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 4px rgba(61,220,151,.18);animation:pulse 2s infinite}
+  @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(61,220,151,0)}}
+  .hero h1{
+    font-size:clamp(2.2rem,4.6vw,3.5rem);
+    line-height:1.1;font-weight:800;letter-spacing:-1px;margin-bottom:20px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(120deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{color:var(--muted);font-size:1.08rem;max-width:520px;margin-bottom:34px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+  .stats{display:flex;gap:40px;flex-wrap:wrap}
+  .stat b{display:block;font-size:1.6rem;font-weight:800;color:var(--text)}
+  .stat span{font-size:.82rem;color:var(--muted);letter-spacing:.4px}
+
+  /* Hero visual card */
+  .hero-visual{position:relative}
+  .rig{
+    position:relative;border-radius:22px;padding:22px;
+    background:linear-gradient(160deg,var(--surface-2),var(--surface));
+    border:1px solid var(--line);
+    box-shadow:0 40px 80px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  .rig-top{display:flex;gap:8px;margin-bottom:18px}
+  .rig-top i{width:11px;height:11px;border-radius:50%;background:#2c3a55}
+  .rig-top i:first-child{background:#ff5f57}
+  .rig-top i:nth-child(2){background:#febc2e}
+  .rig-top i:nth-child(3){background:#28c840}
+  .board{
+    border-radius:14px;padding:20px;
+    background:
+      radial-gradient(400px 200px at 80% 0%,rgba(79,140,255,.18),transparent 70%),
+      #0d1420;
+    border:1px solid var(--line);
+  }
+  .chip-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+  .chip{
+    background:var(--surface);border:1px solid var(--line);border-radius:12px;
+    padding:14px 12px;text-align:center;
+  }
+  .chip b{display:block;font-size:1.05rem;color:var(--accent)}
+  .chip span{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .bar{height:9px;border-radius:99px;background:#1a2436;overflow:hidden;margin:10px 0}
+  .bar i{display:block;height:100%;border-radius:99px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));}
+  .bar-label{display:flex;justify-content:space-between;font-size:.74rem;color:var(--muted);margin-bottom:4px}
+  .float-badge{
+    position:absolute;right:-14px;bottom:-18px;
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:12px 18px;box-shadow:0 20px 40px -20px #000;
+    display:flex;align-items:center;gap:10px;
+  }
+  .float-badge b{font-size:1.1rem;color:var(--accent)}
+  .float-badge span{font-size:.74rem;color:var(--muted);display:block}
+
+  /* ---------- Sections ---------- */
+  section{padding:92px 0}
+  .sec-head{max-width:640px;margin-bottom:52px}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .eyebrow{
+    font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+    color:var(--accent);margin-bottom:12px;
+  }
+  h2{font-size:clamp(1.7rem,3vw,2.35rem);font-weight:800;letter-spacing:-.6px;line-height:1.2;margin-bottom:14px}
+  .sec-head p{color:var(--muted)}
+
+  /* About */
+  .about{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .about-list{list-style:none;display:grid;gap:18px;margin-top:26px}
+  .about-list li{display:flex;gap:14px;align-items:flex-start}
+  .tick{
+    flex:0 0 26px;height:26px;border-radius:8px;display:grid;place-items:center;
+    background:rgba(61,220,151,.12);border:1px solid rgba(61,220,151,.35);
+    color:var(--accent);font-size:.8rem;font-weight:800;
+  }
+  .about-list b{display:block;font-size:.98rem}
+  .about-list p{color:var(--muted);font-size:.9rem}
+  .about-visual{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  }
+  .tile{
+    border-radius:var(--radius);padding:22px;border:1px solid var(--line);
+    background:linear-gradient(160deg,var(--surface-2),var(--surface));
+    min-height:130px;display:flex;flex-direction:column;justify-content:space-between;
+    transition:.3s;
+  }
+  .tile:hover{transform:translateY(-5px);border-color:rgba(61,220,151,.5)}
+  .tile .ico{font-size:1.5rem}
+  .tile b{font-size:.95rem}
+  .tile span{font-size:.78rem;color:var(--muted)}
+  .tile:nth-child(2){transform:translateY(22px)}
+  .tile:nth-child(2):hover{transform:translateY(17px)}
+  .tile:nth-child(3){transform:translateY(-22px)}
+  .tile:nth-child(3):hover{transform:translateY(-27px)}
+
+  /* Features */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+  .card{
+    background:linear-gradient(165deg,var(--surface-2),var(--surface));
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:30px 26px;transition:.3s;position:relative;overflow:hidden;
+  }
+  .card::after{
+    content:"";position:absolute;inset:0;border-radius:var(--radius);
+    background:radial-gradient(300px 140px at 50% 0%,rgba(61,220,151,.14),transparent 70%);
+    opacity:0;transition:.3s;
+  }
+  .card:hover{transform:translateY(-6px);border-color:rgba(61,220,151,.45);box-shadow:0 26px 50px -30px #000}
+  .card:hover::after{opacity:1}
+  .card .ico{
+    width:50px;height:50px;border-radius:14px;display:grid;place-items:center;
+    font-size:1.35rem;margin-bottom:20px;
+    background:rgba(79,140,255,.12);border:1px solid rgba(79,140,255,.3);
+  }
+  .card h3{font-size:1.08rem;margin-bottom:10px;font-weight:700}
+  .card p{color:var(--muted);font-size:.92rem}
+
+  /* Gallery */
+  .gallery{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .gal-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:16px;
+  }
+  .gal{
+    border-radius:var(--radius);border:1px solid var(--line);overflow:hidden;
+    position:relative;display:flex;align-items:flex-end;padding:18px;
+    transition:.35s;
+  }
+  .gal:hover{transform:scale(1.02);border-color:rgba(61,220,151,.5)}
+  .gal b{font-size:.92rem;position:relative;z-index:2}
+  .gal span{font-size:.75rem;color:var(--muted);position:relative;z-index:2;display:block}
+  .gal::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 30%,rgba(6,10,18,.92));
+    z-index:1;
+  }
+  .gal.g1{grid-column:span 2;grid-row:span 2;
+    background:radial-gradient(400px 300px at 30% 20%,rgba(79,140,255,.35),transparent 70%),#0e1626}
+  .gal.g2{grid-column:span 2;
+    background:radial-gradient(300px 200px at 70% 30%,rgba(61,220,151,.3),transparent 70%),#0e1626}
+  .gal.g3{background:radial-gradient(260px 180px at 50% 40%,rgba(255,120,180,.22),transparent 70%),#0e1626}
+  .gal.g4{background:radial-gradient(260px 180px at 50% 40%,rgba(255,190,80,.22),transparent 70%),#0e1626}
+  .gal.g5{grid-column:span 2;
+    background:radial-gradient(320px 200px at 40% 50%,rgba(140,110,255,.28),transparent 70%),#0e1626}
+
+  /* Testimonials */
+  .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+  .quote{
+    background:linear-gradient(165deg,var(--surface-2),var(--surface));
+    border:1px solid var(--line);border-radius:var(--radius);padding:28px;
+    display:flex;flex-direction:column;gap:18px;transition:.3s;
+  }
+  .quote:hover{border-color:rgba(79,140,255,.45);transform:translateY(-4px)}
+  .stars{color:#febc2e;letter-spacing:2px;font-size:.9rem}
+  .quote p{color:var(--muted);font-size:.94rem;font-style:italic}
+  .who{display:flex;align-items:center;gap:12px;margin-top:auto}
+  .avatar{
+    width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+    font-weight:800;font-size:.9rem;color:#06121a;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  }
+  .who b{display:block;font-size:.9rem}
+  .who span{font-size:.78rem;color:var(--muted)}
+
+  /* Contact */
+  .contact{background:var(--bg-2);border-top:1px solid var(--line)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+  .info-item{display:flex;gap:14px;margin-bottom:24px;align-items:flex-start}
+  .info-item .ico{
+    width:42px;height:42px;flex:0 0 42px;border-radius:12px;display:grid;place-items:center;
+    background:rgba(61,220,151,.1);border:1px solid rgba(61,220,151,.3);
+  }
+  .info-item b{display:block;font-size:.92rem}
+  .info-item span{color:var(--muted);font-size:.88rem}
+  form{
+    background:linear-gradient(165deg,var(--surface-2),var(--surface));
+    border:1px solid var(--line);border-radius:var(--radius);padding:30px;
+    display:grid;gap:16px;
+  }
+  .field{display:grid;gap:7px}
+  .field label{font-size:.82rem;color:var(--muted);font-weight:600;letter-spacing:.3px}
+  input,select,textarea{
+    width:100%;padding:12px 14px;border-radius:11px;
+    background:#0d1420;border:1px solid var(--line);color:var(--text);
+    font-family:inherit;font-size:.92rem;transition:.2s;
+  }
+  input:focus,select:focus,textarea:focus{
+    outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(61,220,151,.14);
+  }
+  textarea{resize:vertical;min-height:110px}
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  form .btn{width:100%;margin-top:4px}
+
+  /* Footer */
+  footer{
+    background:#080c13;border-top:1px solid var(--line);padding:60px 0 28px;
+  }
+  .foot-grid{
+    display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px;
+  }
+  .foot-grid p{color:var(--muted);font-size:.9rem;margin-top:16px;max-width:300px}
+  .foot-col h4{font-size:.85rem;text-transform:uppercase;letter-spacing:1.4px;margin-bottom:18px;color:var(--text)}
+  .foot-col a{display:block;color:var(--muted);font-size:.9rem;margin-bottom:11px;transition:.2s}
+  .foot-col a:hover{color:var(--accent);transform:translateX(3px)}
+  .foot-bottom{
+    border-top:1px solid var(--line);padding-top:24px;
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    color:var(--muted);font-size:.84rem;
+  }
+  .socials{display:flex;gap:10px}
+  .socials a{
+    width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
+    border:1px solid var(--line);color:var(--muted);font-size:.85rem;transition:.25s;
+  }
+  .socials a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
+    .hero{padding:70px 0 84px}
+    .tile:nth-child(2),.tile:nth-child(3){transform:none}
+    .tile:nth-child(2):hover,.tile:nth-child(3):hover{transform:translateY(-5px)}
+    .gal-grid{grid-template-columns:repeat(2,1fr)}
+    .gal.g1{grid-column:span 2;grid-row:span 1}
+    .gal.g5{grid-column:span 2}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:720px){
+    .nav-links{
+      position:absolute;top:72px;left:0;right:0;
+      flex-direction:column;gap:0;align-items:stretch;
+      background:rgba(11,15,23,.98);border-bottom:1px solid var(--line);
+      padding:8px 24px 20px;display:none;
+    }
+    .nav-links.open{display:flex}
+    .nav-links a{padding:13px 0;border-bottom:1px solid var(--line)}
+    .nav-links a::after{display:none}
+    .nav .btn{display:none}
+    .menu-toggle{display:block}
+    section{padding:68px 0}
+    .stats{gap:26px}
+    .row-2{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr;gap:30px}
+    .float-badge{right:8px;bottom:-14px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo">
+      <span class="logo-mark">V</span>Volt<span>Core</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#features">Products</a>
+      <a href="#gallery">Builds</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-primary">Get a Quote</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill"><span class="dot"></span> New: RTX 50-Series Now In Stock</span>
+      <h1>Build the machine that <em>never slows you down.</em></h1>
+      <p class="lead">
+        VoltCore supplies enthusiast-grade CPUs, GPUs, memory and cooling to gamers,
+        creators and studios. Every component is bench-tested before it ships — no
+        compromises, no bottlenecks.
+      </p>
+      <div class="hero-cta">
+        <a href="#features" class="btn btn-primary">Browse Hardware →</a>
+        <a href="#contact" class="btn btn-ghost">Talk to an Expert</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>12,400+</b><span>RIGS BUILT</span></div>
+        <div class="stat"><b>48 hrs</b><span>AVG. DISPATCH</span></div>
+        <div class="stat"><b>4.9/5</b><span>CUSTOMER RATING</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="rig">
+        <div class="rig-top"><i></i><i></i><i></i></div>
+        <div class="board">
+          <div class="chip-row">
+            <div class="chip"><b>5.8 GHz</b><span>CPU Boost</span></div>
+            <div class="chip"><b>24 GB</b><span>VRAM</span></div>
+            <div class="chip"><b>64 GB</b><span>DDR5</span></div>
+          </div>
+          <div class="bar-label"><span>GPU Load</span><span>72%</span></div>
+          <div class="bar"><i style="width:72%"></i></div>
+          <div class="bar-label"><span>Thermals</span><span>54°C</span></div>
+          <div class="bar"><i style="width:44%"></i></div>
+          <div class="bar-label"><span>Memory Bandwidth</span><span>88%</span></div>
+          <div class="bar"><i style="width:88%"></i></div>
+        </div>
+      </div>
+      <div class="float-badge">
+        <b>✓</b>
+        <div><b>Bench-Tested</b><span>Every single unit</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <p class="eyebrow">Who We Are</p>
+      <h2>Hardware specialists, not a big-box store.</h2>
+      <p style="color:var(--muted)">
+        Founded in 2014 by two system builders who were tired of off-the-shelf
+        machines, VoltCore has grown into a specialist supplier trusted by
+        competitive gamers, 3D studios and data teams across the country.
+      </p>
+      <ul class="about-list">
+        <li>
+          <span class="tick">✓</span>
+          <div><b>Curated, not cluttered</b><p>We stock only components we'd put in our own rigs — vetted for reliability and real-world performance.</p></div>
+        </li>
+        <li>
+          <span class="tick">✓</span>
+          <div><b>Tested before it ships</b><p>Every CPU, GPU and memory kit runs a 24-hour burn-in so you never receive a dead-on-arrival part.</p></div>
+        </li>
+        <li>
+          <span class="tick">✓</span>
+          <div><b>Advice from builders</b><p>Our support team builds systems daily. Ask them anything — you'll get a real answer, not a script.</p></div>
+        </li>
+      </ul>
+    </div>
+    <div class="about-visual">
+      <div class="tile"><span class="ico">🧠</span><div><b>Processors</b><span>Intel &amp; AMD, 12th gen to latest</span></div></div>
+      <div class="tile"><span class="ico">🎮</span><div><b>Graphics Cards</b><span>NVIDIA &amp; Radeon, all tiers</span></div></div>
+      <div class="tile"><span class="ico">❄️</span><div><b>Cooling</b><span>AIO, custom loops, air</span></div></div>
+      <div class="tile"><span class="ico">⚡</span><div><b>Power &amp; Cases</b><span>80+ Gold PSUs, airflow-first</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES / SERVICES -->
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head center">
+      <p class="eyebrow">What We Offer</p>
+      <h2>Everything you need to build, upgrade or repair</h2>
+      <p>From a single stick of RAM to a full studio workstation — we handle the sourcing, testing and support.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="ico">🖥️</div>
+        <h3>Custom PC Builds</h3>
+        <p>Tell us your budget and workload. We spec, assemble, cable-manage and stress-test a machine tuned exactly to your needs.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔧</div>
+        <h3>Upgrades &amp; Repairs</h3>
+        <p>GPU swaps, storage expansion, thermal repasting and diagnostics — most repairs turned around within 48 hours.</p>
+      </div>
+      <div class="card">
+        <div class="ico">📦</div>
+        <h3>Component Retail</h3>
+        <p>Buy individual parts with confidence. Transparent pricing, genuine warranties and free shipping on orders over $99.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🏢</div>
+        <h3>Business &amp; Studio Supply</h3>
+        <p>Bulk workstations, render nodes and fleet maintenance with dedicated account management and priority support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Recent Builds</p>
+      <h2>Straight from the workbench</h2>
+      <p>A look at some of the systems that left our workshop this month.</p>
+    </div>
+    <div class="gal-grid">
+      <div class="gal g1"><div><b>“Titan” 4K Gaming Rig</b><span>Ryzen 9 · RTX 5080 · 64GB DDR5</span></div></div>
+      <div class="gal g2"><div><b>Render Node Cluster</b><span>Dual Xeon · 256GB ECC</span></div></div>
+      <div class="gal g3"><div><b>Silent ITX</b><span>Low-noise SFF build</span></div></div>
+      <div class="gal g4"><div><b>Streaming Setup</b><span>Dual-PC capture rig</span></div></div>
+      <div class="gal g5"><div><b>Custom Water Loop</b><span>Hardline · Full-copper blocks</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head center">
+      <p class="eyebrow">Customer Reviews</p>
+      <h2>Trusted by builders and studios alike</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>“Ordered a full build for video editing. It arrived perfectly cable-managed and hit the exact benchmark numbers they promised. Genuinely impressed.”</p>
+        <div class="who"><div class="avatar">MR</div><div><b>Maya R.</b><span>Freelance Editor</span></div></div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>“Their support team talked me out of an overpriced GPU and into a better-value one. That kind of honesty is rare. Customer for life.”</p>
+        <div class="who"><div class="avatar">DK</div><div><b>Daniel K.</b><span>Competitive Gamer</span></div></div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★☆</div>
+        <p>“We ordered twelve workstations for our studio. Delivery was on schedule and every machine passed our own QA on arrival. Will reorder.”</p>
+        <div class="who"><div class="avatar">SL</div><div><b>Sofia L.</b><span>Studio Operations Lead</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="eyebrow">Get In Touch</p>
+      <h2>Let's spec your next machine</h2>
+      <p style="color:var(--muted);margin-bottom:34px">
+        Tell us what you're building and we'll come back with a recommended parts
+        list and a fixed quote — usually within one business day.
+      </p>
+      <div class="info-item">
+        <div class="ico">📍</div>
+        <div><b>Workshop &amp; Showroom</b><span>Unit 14, Kilnbrook Industrial Park, Manchester M12 4QT</span></div>
+      </div>
+      <div class="info-item">
+        <div class="ico">✉️</div>
+        <div><b>Email</b><span>builds@voltcore.example</span></div>
+      </div>
+      <div class="info-item        <div class="ico">📞</div>
+        <div><b>Phone</b><span>+44 161 555 0142 · Mon–Sat, 9am–6pm</span></div>
+      </div>
+    </div>
+
+    <form onsubmit="event.preventDefault(); this.querySelector('.btn').textContent='Request Sent ✓';">
+      <div class="row-2">
+        <div class="field">
+          <label for="name">Full Name</label>
+          <input id="name" type="text" placeholder="Alex Morgan" required>
+        </div>
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input id="email" type="email" placeholder="alex@example.com" required>
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="field">
+          <label for="type">Project Type</label>
+          <select id="type">
+            <option>Custom PC Build</option>
+            <option>Upgrade / Repair</option>
+            <option>Component Purchase</option>
+            <option>Business / Studio Supply</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="budget">Budget Range</label>
+          <select id="budget">
+            <option>Under $1,000</option>
+            <option>$1,000 – $2,500</option>
+            <option>$2,500 – $5,000</option>
+            <option>$5,000+</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="msg">Tell us about your build</label>
+        <textarea id="msg" placeholder="I need a machine for 4K video editing and light gaming..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send Request</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="logo">
+          <span class="logo-mark">V</span>Volt<span>Core</span>
+        </a>
+        <p>Specialist supplier of enthusiast computer hardware and custom-built systems. Bench-tested, honestly priced, backed by real builders.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Products</h4>
+        <a href="#features">Processors</a>
+        <a href="#features">Graphics Cards</a>
+        <a href="#features">Memory &amp; Storage</a>
+        <a href="#features">Cooling &amp; Cases</a>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <a href="#features">Custom Builds</a>
+        <a href="#features">Upgrades &amp; Repairs</a>
+        <a href="#features">Business Supply</a>
+        <a href="#contact">Get a Quote</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#about">About Us</a>
+        <a href="#gallery">Recent Builds</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2025 VoltCore Hardware Ltd. All rights reserved.</span>
+      <div class="socials">
+        <a href="#" aria-label="Twitter">𝕏</a>
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="YouTube">▶</a>
+        <a href="#" aria-label="Discord">◈</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => links.classList.remove('open'))
+  );
+</script>
+
+</body>
+</html>
